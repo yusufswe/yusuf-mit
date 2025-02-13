@@ -10,6 +10,7 @@ export default function Project() {
     <section className="bg-[#1B4332] text-white py-16 px-4" id="project">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
+
         <div className="grid md:grid-cols-2 gap-6">
           <ProjectCard
             title="React Space"
