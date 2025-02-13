@@ -4,7 +4,7 @@ import { Mail, Github, Linkedin, Medium, Stackoverflow } from "lucide-react";
 export default function Navbar() {
   return (
     <header className="container mx-auto">
-      <div className="bg-slate-900 p-4">
+      <div className="bg-black p-4">
         <div className="flex justify-between px-5 text-white">
           <div className="flex space-x-5">
             <a
