@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
-    <section className="bg-[#663399] text-white py-16 px-4" id="contact">
+    <section className="container mx-auto bg-[#663399] text-white py-16 px-4" id="contact">
       <div className="max-w-md mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 150 }}
