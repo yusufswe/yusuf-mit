@@ -17,6 +17,7 @@ export default function Contact() {
               <input
                 type="text"
                 placeholder="Name"
+                required
                 className="w-full px-4 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
               />
             </div>
@@ -24,11 +25,15 @@ export default function Contact() {
               <input
                 type="email"
                 placeholder="Email Address"
+                required
                 className="w-full px-4 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
               />
             </div>
             <div>
-              <select className="w-full px-4 py-2 rounded-md bg-white/10 border border-white/20 text-white/90 focus:outline-none focus:ring-2 focus:ring-white/30">
+              <select
+                required
+                className="w-full px-4 py-2 rounded-md bg-white/10 border border-white/20 text-white/90 focus:outline-none focus:ring-2 focus:ring-white/30"
+              >
                 <option value="" className="bg-[#663399]">
                   Type of enquiry
                 </option>
@@ -45,6 +50,7 @@ export default function Contact() {
             </div>
             <div>
               <textarea
+                required
                 placeholder="Your message"
                 rows={6}
                 className="w-full px-4 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 resize-none"
