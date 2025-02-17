@@ -6,9 +6,13 @@ export default function Hero() {
   return (
     <section className="container mx-auto bg-[#2B4157] text-white ">
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        initial={{ opacity: 0, y: 100, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.6,
+          delay: 0.2,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
         viewport={{ once: true }}
       >
         <div className="flex flex-col justify-center items-center h-screen">

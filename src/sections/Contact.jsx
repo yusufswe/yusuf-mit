@@ -70,10 +70,14 @@ export default function Contact() {
     <section className="container mx-auto bg-[#663399] text-white py-16 px-4" id="contact">
       <div className="max-w-md mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 150 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true, amount: 0.2 }}
+          initial={{ opacity: 0, y: 150, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.2,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
+          viewport={{ once: true }}
         >
           <h2 className="text-2xl font-bold mb-8">Contact me</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
