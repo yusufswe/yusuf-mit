@@ -20,11 +20,11 @@ export default function Hero() {
             <img src={myPhoto} alt="myPhoto" className="w-full h-full object-cover" />
           </div>
 
-          <h1 className="text-xl md:text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-500 drop-shadow-lg">
+          <h1 className="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-500 drop-shadow-lg">
             <span>Hello I am </span>Yusuf
           </h1>
 
-          <p className="text-2xl md:text-3xl font-semibold text-gray-300 mt-4">
+          <p className="text-3xl md:text-4xl font-semibold text-gray-300 mt-4">
             A frontend developer{" "}
             <span className="text-blue-400 font-medium">
               <br />
