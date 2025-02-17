@@ -1,6 +1,8 @@
 import React from "react";
 import ProjectCard from "../components/ProjectCard";
 import imgProjek1 from "../assets/img/myimage.webp";
+import { motion } from "framer-motion";
+
 const projects = [
   {
     title: "React Space",
@@ -31,20 +33,31 @@ const projects = [
 export default function Project() {
   return (
     <section className="container mx-auto bg-[#1B4332] text-white py-16 px-4" id="project">
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 150, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.6,
+          delay: 0.2,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              title={project.title}
-              description={project.description}
-              image={project.image}
-            />
-          ))}
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={index}
+                title={project.title}
+                description={project.description}
+                image={project.image}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
