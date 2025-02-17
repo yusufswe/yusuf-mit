@@ -1,4 +1,3 @@
-// components/FormField.jsx
 import React from "react";
 
 const baseInputStyles = `w-full border-2 border-white px-4 py-2 rounded-md bg-white/10 border
