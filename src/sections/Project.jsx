@@ -1,10 +1,6 @@
 import React from "react";
 import ProjectCard from "../components/ProjectCard";
-import imgProjek1 from "../assets/img/myimage.jpg";
-import imgProjek2 from "../assets/img/myimage2.jpg";
-import imgProjek3 from "../assets/img/splashimg.jpg";
-import imgProjek4 from "../assets/img/myimage4.jpg";
-
+import imgProjek1 from "../assets/img/myimage.webp";
 const projects = [
   {
     title: "React Space",
@@ -16,19 +12,19 @@ const projects = [
     title: "React Infinite Scroll",
     description:
       "A solution to implement infinite scroll with performance support, helping developers to implement in JS and TS",
-    image: imgProjek2,
+    image: imgProjek1,
   },
   {
     title: "Photo Gallery",
     description:
       "A cool way of using photo gallery to share and favorite travel photos in a shared source of photos",
-    image: imgProjek3,
+    image: imgProjek1,
   },
   {
     title: "Event planner",
     description:
       "A simple application for special events to discover unique events happening in your city with filter",
-    image: imgProjek4,
+    image: imgProjek1,
   },
 ];
 

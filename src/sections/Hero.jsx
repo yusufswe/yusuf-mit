@@ -1,5 +1,5 @@
 import React from "react";
-import myPhoto from "../assets/img/myPhoto.jpg";
+import myPhoto from "../assets/img/myPhoto.webp";
 import { motion } from "framer-motion";
 
 export default function Hero() {
