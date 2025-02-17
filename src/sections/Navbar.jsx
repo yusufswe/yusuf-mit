@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <header className="container mx-auto fixed z-10 top-0 left-0 right-0">
-      <div className="bg-black p-4">
+      <div className="bg-black p-8">
         <div className="flex justify-between items-center px-5 text-white">
           <div className="space-x-5 items-center hidden md:flex">
             <a
@@ -25,7 +25,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hover:text-blue-400 transition"
             >
-              <Mail />
+              <Mail size={30} />
             </a>
             <a
               href="https://github.com/yusufswe"
@@ -33,7 +33,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hover:text-gray-400 transition"
             >
-              <Github />
+              <Github size={30} />
             </a>
             <a
               href="https://www.linkedin.com/in/muhammadyusuf-compsci/"
@@ -41,7 +41,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hover:text-blue-500 transition"
             >
-              <Linkedin />
+              <Linkedin size={30} />
             </a>
             <a
               href="https://medium.com/"
@@ -49,7 +49,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hover:text-green-400 transition"
             >
-              <FaMedium size={25} />
+              <FaMedium size={30} />
             </a>
             <a
               href="https://stackoverflow.com/questions"
@@ -57,19 +57,19 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hover:text-orange-500 transition"
             >
-              <FaStackOverflow size={25} />
+              <FaStackOverflow size={30} />
             </a>
           </div>
           <div className="space-x-5 hidden md:flex">
             <button
               onClick={() => scrollToSection("project")}
-              className="hover:text-blue-500 transition"
+              className="text-lg font-semibold hover:text-blue-500 transition"
             >
               Project
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="hover:text-green-500 transition"
+              className="text-lg font-semibold hover:text-green-500 transition"
             >
               Contact
             </button>
@@ -118,7 +118,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition"
                 >
-                  <Mail size={24} />
+                  <Mail size={30} />
                 </a>
                 <a
                   href="https://github.com/yusufswe"
@@ -126,7 +126,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="hover:text-gray-400 transition"
                 >
-                  <Github size={24} />
+                  <Github size={30} />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/muhammadyusuf-compsci/"
@@ -134,7 +134,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="hover:text-blue-500 transition"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={30} />
                 </a>
                 <a
                   href="https://medium.com/"
@@ -142,7 +142,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="hover:text-green-400 transition"
                 >
-                  <FaMedium size={24} />
+                  <FaMedium size={30} />
                 </a>
                 <a
                   href="https://stackoverflow.com/questions"
@@ -150,20 +150,20 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="hover:text-orange-500 transition"
                 >
-                  <FaStackOverflow size={24} />
+                  <FaStackOverflow size={30} />
                 </a>
               </div>
 
               <div className="flex flex-col items-center space-y-4 w-full">
                 <button
                   onClick={() => scrollToSection("project")}
-                  className="px-4 py-2 w-40 bg-blue-600 hover:bg-blue-700 rounded-lg transition"
+                  className="text-lg font-semibold px-4 py-2 w-40 bg-blue-600 hover:bg-blue-700 rounded-lg transition"
                 >
                   Project
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="px-4 py-2 w-40 bg-green-600 hover:bg-green-700 rounded-lg transition"
+                  className="text-lg font-semibold px-4 py-2 w-40 bg-green-600 hover:bg-green-700 rounded-lg transition"
                 >
                   Contact
                 </button>
