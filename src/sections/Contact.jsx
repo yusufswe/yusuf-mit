@@ -1,7 +1,17 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { useForm } from "../hooks/useForm";
-import { FormField, StatusMessage, SubmitButton } from "../components/FormField";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  FormErrorMessage,
+  Textarea,
+  Select,
+  Center,
+} from "@chakra-ui/react";
+import { Formik, Field, Form } from "formik";
+import * as Yup from "yup";
 
 const INITIAL_FORM_STATE = {
   name: "",
@@ -10,132 +20,72 @@ const INITIAL_FORM_STATE = {
   message: "",
 };
 
-const ENQUIRY_OPTIONS = [
-  { value: "", label: "Type of enquiry" },
-  { value: "project", label: "Freelance project proposal" },
-  { value: "opportunity", label: "Job opportunity" },
-  { value: "other", label: "Other" },
-];
+const validationSchema = Yup.object({
+  name: Yup.string().required("Required"),
+  email: Yup.string().required("Required").email("Invalid email"),
+  enquiry: Yup.string().required("Required"),
+  message: Yup.string().required("Required").min(25, "Pesan harus minimal 25 karakter"),
+});
 
 export default function Contact() {
-  const {
-    formData,
-    errors,
-    touched,
-    isSubmitting,
-    submitStatus,
-    setIsSubmitting,
-    setSubmitStatus,
-    handleChange,
-    handleBlur,
-    validateForm,
-    resetForm,
-  } = useForm(INITIAL_FORM_STATE);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      setIsSubmitting(true);
-
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        setSubmitStatus({
-          success: true,
-          message: "Terimakasih atas pesan anda.",
-        });
-
-        setTimeout(() => {
-          resetForm();
-        }, 2000);
-      } catch (error) {
-        setSubmitStatus({
-          success: false,
-          message: "Terjadi kesalahan. Silahkan coba lagi",
-        });
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      const firstError = Object.keys(formData).find((key) => errors[key]);
-      if (firstError) {
-        const element = document.querySelector(`[name="${firstError}"]`);
-        if (element) element.focus();
-      }
-    }
-  };
-
   return (
-    <section className="container mx-auto bg-[#663399] text-white py-16 px-4" id="contact">
-      <div className="max-w-md mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 150, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: [0.25, 0.1, 0.25, 1],
-          }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl font-bold mb-8">Contact me</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <FormField
-              label="Name"
-              name="name"
-              placeholder="Your name"
-              value={formData.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.name}
-              touched={touched.name}
-            />
+    <div className="container mx-auto">
+      <Center h="100vh" bg="#512DA8">
+        <Box width="100%" maxWidth="500px">
+          <Formik initialValues={INITIAL_FORM_STATE} validationSchema={validationSchema}>
+            {(props) => (
+              <Form>
+                <FormControl isInvalid={props.errors.name && props.touched.name}>
+                  <FormLabel htmlFor="name" color="white">
+                    Name
+                  </FormLabel>
+                  <Field name="name" as={Input} id="name" color="white" />
+                  <FormErrorMessage>{props.errors.name}</FormErrorMessage>
+                </FormControl>
 
-            <FormField
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Your email address"
-              value={formData.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.email}
-              touched={touched.email}
-            />
+                <FormControl isInvalid={props.errors.email && props.touched.email}>
+                  <FormLabel htmlFor="email" color="white">
+                    Email Address
+                  </FormLabel>
+                  <Field name="email" as={Input} id="email" color="white" />
+                  <FormErrorMessage>{props.errors.email}</FormErrorMessage>
+                </FormControl>
 
-            <FormField
-              label="Type of Enquiry"
-              name="enquiry"
-              type="select"
-              options={ENQUIRY_OPTIONS}
-              value={formData.enquiry}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.enquiry}
-              touched={touched.enquiry}
-            />
+                <FormControl isInvalid={props.errors.enquiry && props.touched.enquiry}>
+                  <FormLabel htmlFor="enquiry" color="white">
+                    Type of enquiry
+                  </FormLabel>
+                  <Field name="enquiry" as={Select} id="enquiry" placeholder="Select option">
+                    <option value="project">Freelance project proposal</option>
+                    <option value="opportunity">Job opportunity</option>
+                    <option value="other">Freelance project proposal</option>
+                  </Field>
+                  <FormErrorMessage>{props.errors.enquiry}</FormErrorMessage>
+                </FormControl>
 
-            <FormField
-              label="Message"
-              name="message"
-              type="textarea"
-              placeholder="Your message"
-              value={formData.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.message}
-              touched={touched.message}
-            />
+                <FormControl isInvalid={props.errors.message && props.touched.message}>
+                  <FormLabel htmlFor="message" color="white">
+                    Your message
+                  </FormLabel>
+                  <Field name="message" as={Textarea} id="message" rows={8} color="white" />
+                  <FormErrorMessage>{props.errors.message}</FormErrorMessage>
+                </FormControl>
 
-            <StatusMessage status={submitStatus} />
-
-            <SubmitButton isSubmitting={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </SubmitButton>
-          </form>
-        </motion.div>
-      </div>
-    </section>
+                <Button
+                  mt={4}
+                  width="100%"
+                  bg="#805AD5"
+                  color="white"
+                  isLoading={props.isSubmitting}
+                  type="submit"
+                >
+                  Submit
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      </Center>
+    </div>
   );
 }

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="container mx-auto bg-gradient-to-b from-[#1E293B] to-[#2B4157] text-white">
+    <section className="container mx-auto bg-[#2A4365] text-white">
       <motion.div
         initial={{ opacity: 0, y: 100, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}

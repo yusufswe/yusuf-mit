@@ -32,7 +32,7 @@ const projects = [
 
 export default function Project() {
   return (
-    <section className="container mx-auto bg-[#1B4332] text-white py-16 px-4" id="project">
+    <section className="container mx-auto bg-[#14532D] text-white py-16 px-4" id="project">
       <motion.div
         initial={{ opacity: 0, y: 150, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
