@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   FormControl,
@@ -9,6 +9,12 @@ import {
   Textarea,
   Select,
   Center,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
@@ -28,11 +34,48 @@ const validationSchema = Yup.object({
 });
 
 export default function Contact() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
+
+  const handleSubmit = (values, actions) => {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = Math.random() > 0.5;
+        if (isSuccess) {
+          resolve("Success");
+        } else {
+          reject("Failed");
+        }
+      }, 1000);
+    })
+      .then(() => {
+        setModalTitle("All Good!");
+        setModalMessage(
+          `Terima kasih atas pesannya ${values.name}, kami akan segera menghubungi Anda kembali!`
+        );
+        setIsModalOpen(true);
+        actions.resetForm();
+      })
+      .catch(() => {
+        setModalTitle("Submission Failed");
+        setModalMessage("Pengiriman formulir gagal. Silakan coba lagi.");
+        setIsModalOpen(true);
+      })
+      .finally(() => {
+        actions.setSubmitting(false);
+      });
+  };
+
   return (
     <div className="container mx-auto">
       <Center h="100vh" bg="#512DA8">
         <Box width="100%" maxWidth="500px">
-          <Formik initialValues={INITIAL_FORM_STATE} validationSchema={validationSchema}>
+          <Formik
+            initialValues={INITIAL_FORM_STATE}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
             {(props) => (
               <Form>
                 <FormControl isInvalid={props.errors.name && props.touched.name}>
@@ -58,7 +101,7 @@ export default function Contact() {
                   <Field name="enquiry" as={Select} id="enquiry" placeholder="Select option">
                     <option value="project">Freelance project proposal</option>
                     <option value="opportunity">Job opportunity</option>
-                    <option value="other">Freelance project proposal</option>
+                    <option value="other">Other</option>
                   </Field>
                   <FormErrorMessage>{props.errors.enquiry}</FormErrorMessage>
                 </FormControl>
@@ -86,6 +129,19 @@ export default function Contact() {
           </Formik>
         </Box>
       </Center>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{modalTitle}</ModalHeader>
+          <ModalBody>{modalMessage}</ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" onClick={() => setIsModalOpen(false)}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
