@@ -6,6 +6,7 @@ import { FaStackOverflow } from "react-icons/fa";
 import { FaMedium } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
+import { Box, Flex, Button, IconButton } from "@chakra-ui/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,92 +17,122 @@ export default function Navbar() {
 
   return (
     <header className="container mx-auto fixed z-10 top-0 left-0 right-0">
-      <div className="bg-black p-8">
-        <div className="flex justify-between items-center px-5 text-white">
-          <div className="space-x-5 items-center hidden md:flex">
-            <a
+      <Box bg="black" p={8}>
+        <Flex justify="space-between" align="center" px={5} color="white">
+          <Flex gap={5} align="center" display={{ base: "none", md: "flex" }}>
+            <IconButton
+              as="a"
               href="mailto:muhammad.yusuf@merkleinnovation.co.id"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-400 transition"
-            >
-              <Mail size={30} />
-            </a>
-            <a
+              aria-label="Email"
+              icon={<Mail size={30} />}
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "blue.400" }}
+            />
+            <IconButton
+              as="a"
               href="https://github.com/yusufswe"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-400 transition"
-            >
-              <Github size={30} />
-            </a>
-            <a
+              aria-label="GitHub"
+              icon={<Github size={30} />}
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "gray.400" }}
+            />
+            <IconButton
+              as="a"
               href="https://www.linkedin.com/in/muhammadyusuf-compsci/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-500 transition"
-            >
-              <Linkedin size={30} />
-            </a>
-            <a
+              aria-label="LinkedIn"
+              icon={<Linkedin size={30} />}
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "blue.500" }}
+            />
+            <IconButton
+              as="a"
               href="https://medium.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-green-400 transition"
-            >
-              <FaMedium size={30} />
-            </a>
-            <a
+              aria-label="Medium"
+              icon={<FaMedium size={30} />}
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "green.400" }}
+            />
+            <IconButton
+              as="a"
               href="https://stackoverflow.com/questions"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-500 transition"
-            >
-              <FaStackOverflow size={30} />
-            </a>
-          </div>
-          <div className="space-x-5 hidden md:flex">
-            <button
+              aria-label="Stack Overflow"
+              icon={<FaStackOverflow size={30} />}
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "orange.500" }}
+            />
+          </Flex>
+
+          <Flex gap={5} display={{ base: "none", md: "flex" }}>
+            <Button
               onClick={() => scrollToSection("project")}
-              className="text-lg font-semibold hover:text-blue-500 transition"
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "blue.500" }}
+              fontSize="lg"
+              fontWeight="semibold"
             >
               Project
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scrollToSection("contact")}
-              className="text-lg font-semibold hover:text-green-500 transition"
+              variant="unstyled"
+              colorScheme="whiteAlpha"
+              _hover={{ color: "green.500" }}
+              fontSize="lg"
+              fontWeight="semibold"
             >
               Contact
-            </button>
-          </div>
-          <div className="flex ml-auto justify-end md:hidden">
-            <button
-              className="relative w-6 h-6"
-              onClick={() => setIsOpen(!isOpen)}
+            </Button>
+          </Flex>
+
+          <Flex ml="auto" justify="flex-end" display={{ base: "flex", md: "none" }}>
+            <IconButton
               aria-label="Toggle menu"
-            >
-              <span
-                className={twMerge(
-                  "absolute w-full h-0.5 bg-white transition-all duration-300 ease-in-out",
-                  isOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-1"
-                )}
-              />
-              <span
-                className={twMerge(
-                  "absolute w-full h-0.5 bg-white transition-all duration-300 ease-in-out top-1/2 -translate-y-1/2",
-                  isOpen && "opacity-0"
-                )}
-              />
-              <span
-                className={twMerge(
-                  "absolute w-full h-0.5 bg-white transition-all duration-300 ease-in-out",
-                  isOpen ? "bottom-1/2 translate-y-1/2 -rotate-45" : "bottom-1"
-                )}
-              />
-            </button>
-          </div>
-        </div>
-      </div>
+              icon={
+                <>
+                  <span
+                    className={twMerge(
+                      "absolute  w-3/4 h-0.5 bg-white transition-all duration-300 ease-in-out",
+                      isOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-1"
+                    )}
+                  />
+                  <span
+                    className={twMerge(
+                      "absolute  w-3/4 h-0.5 bg-white transition-all duration-300 ease-in-out top-1/2 -translate-y-1/2",
+                      isOpen && "opacity-0"
+                    )}
+                  />
+                  <span
+                    className={twMerge(
+                      "absolute w-3/4 h-0.5 bg-white transition-all duration-300 ease-in-out",
+                      isOpen ? "bottom-1/2 translate-y-1/2 -rotate-45" : "bottom-1"
+                    )}
+                  />
+                </>
+              }
+              onClick={() => setIsOpen(!isOpen)}
+              variant="ghost"
+              colorScheme="whiteAlpha"
+            />
+          </Flex>
+        </Flex>
+      </Box>
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -110,65 +141,97 @@ export default function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="flex flex-col md:hidden items-center gap-6 py-6 bg-neutral-900/80 backdrop-blur-md  text-white shadow-lg rounded-b-lg">
-              <div className="flex gap-4">
-                <a
+            <Box
+              display={{ base: "flex", md: "none" }}
+              flexDir="column"
+              alignItems="center"
+              gap={6}
+              py={6}
+              bg="blackAlpha.600"
+              backdropFilter="blur(12px)"
+              color="white"
+              shadow="lg"
+              roundedBottom="lg"
+            >
+              <Flex gap={4}>
+                <IconButton
+                  as="a"
                   href="mailto:muhammad.yusuf@merkleinnovation.co.id"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-400 transition"
-                >
-                  <Mail size={30} />
-                </a>
-                <a
+                  aria-label="Email"
+                  icon={<Mail size={30} />}
+                  variant="unstyled"
+                  colorScheme="whiteAlpha"
+                  _hover={{ color: "blue.400" }}
+                />
+                <IconButton
+                  as="a"
                   href="https://github.com/yusufswe"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gray-400 transition"
-                >
-                  <Github size={30} />
-                </a>
-                <a
+                  aria-label="GitHub"
+                  icon={<Github size={30} />}
+                  variant="unstyled"
+                  colorScheme="whiteAlpha"
+                  _hover={{ color: "gray.400" }}
+                />
+                <IconButton
+                  as="a"
                   href="https://www.linkedin.com/in/muhammadyusuf-compsci/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-500 transition"
-                >
-                  <Linkedin size={30} />
-                </a>
-                <a
+                  aria-label="LinkedIn"
+                  icon={<Linkedin size={30} />}
+                  variant="unstyled"
+                  colorScheme="whiteAlpha"
+                  _hover={{ color: "blue.500" }}
+                />
+                <IconButton
+                  as="a"
                   href="https://medium.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-green-400 transition"
-                >
-                  <FaMedium size={30} />
-                </a>
-                <a
+                  aria-label="Medium"
+                  icon={<FaMedium size={30} />}
+                  variant="unstyled"
+                  colorScheme="whiteAlpha"
+                  _hover={{ color: "green.400" }}
+                />
+                <IconButton
+                  as="a"
                   href="https://stackoverflow.com/questions"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-orange-500 transition"
-                >
-                  <FaStackOverflow size={30} />
-                </a>
-              </div>
+                  aria-label="Stack Overflow"
+                  icon={<FaStackOverflow size={30} />}
+                  variant="unstyled"
+                  colorScheme="whiteAlpha"
+                  _hover={{ color: "orange.500" }}
+                />
+              </Flex>
 
-              <div className="flex flex-col items-center space-y-4 w-full">
-                <button
+              <Flex flexDir="column" alignItems="center" gap={4} w="full">
+                <Button
                   onClick={() => scrollToSection("project")}
-                  className="text-lg font-semibold px-4 py-2 w-40 bg-blue-600 hover:bg-blue-700 rounded-lg transition"
+                  w="160px"
+                  colorScheme="blue"
+                  fontSize="lg"
+                  fontWeight="semibold"
                 >
                   Project
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => scrollToSection("contact")}
-                  className="text-lg font-semibold px-4 py-2 w-40 bg-green-600 hover:bg-green-700 rounded-lg transition"
+                  w="160px"
+                  colorScheme="green"
+                  fontSize="lg"
+                  fontWeight="semibold"
                 >
                   Contact
-                </button>
-              </div>
-            </div>
+                </Button>
+              </Flex>
+            </Box>
           </motion.div>
         )}
       </AnimatePresence>
