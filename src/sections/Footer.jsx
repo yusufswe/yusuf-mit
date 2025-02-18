@@ -1,9 +1,18 @@
 import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto bg-black text-white font-semibold text-lg p-4 text-center ">
-      <p>Yusuf © 2025</p>
-    </footer>
+    <Box
+      className="container mx-auto"
+      bg="black"
+      color="white"
+      fontWeight="semibold"
+      fontSize="lg"
+      py={4}
+      textAlign="center"
+    >
+      <Text>Yusuf © 2025</Text>
+    </Box>
   );
 }
