@@ -1,11 +1,14 @@
 import React from "react";
-import myPhoto from "../assets/img/myPhoto.webp";
+import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import myPhoto from "../assets/img/myPhoto.webp";
+
+const MotionBox = motion(Box);
 
 export default function Hero() {
   return (
-    <section className="container mx-auto bg-[#2A4365] text-white">
-      <motion.div
+    <Box bg="#2A4365" color="white" minH="100vh" className="container mx-auto">
+      <MotionBox
         initial={{ opacity: 0, y: 100, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         transition={{
@@ -15,24 +18,45 @@ export default function Hero() {
         }}
         viewport={{ once: true }}
       >
-        <div className="flex flex-col justify-center items-center h-screen text-center px-6">
-          <div className="w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-white/80 shadow-2xl shadow-white/20">
-            <img src={myPhoto} alt="myPhoto" className="w-full h-full object-cover" />
-          </div>
+        <Flex
+          direction="column"
+          justify="center"
+          align="center"
+          minH="100vh"
+          textAlign="center"
+          px={6}
+        >
+          <Box
+            w="12rem"
+            h="12rem"
+            mb={6}
+            borderRadius="full"
+            overflow="hidden"
+            border="4px solid rgba(255, 255, 255, 0.8)"
+            boxShadow="0px 4px 20px rgba(255, 255, 255, 0.2)"
+          >
+            <Image src={myPhoto} alt="Yusuf" w="full" h="full" objectFit="cover" />
+          </Box>
 
-          <h1 className="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-500 drop-shadow-lg">
-            <span>Hello I am </span>Yusuf
-          </h1>
+          <Heading
+            as="h1"
+            fontSize={{ base: "2xl", md: "3xl" }}
+            fontWeight="extrabold"
+            bgGradient="linear(to-r, cyan.300, blue.500)"
+            bgClip="text"
+            textShadow="lg"
+          >
+            Hello, I am Yusuf
+          </Heading>
 
-          <p className="text-3xl md:text-4xl font-semibold text-gray-300 mt-4">
-            A frontend developer{" "}
-            <span className="text-blue-400 font-medium">
-              <br />
+          <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="semibold" color="gray.300" mt={4}>
+            A frontend developer <br />
+            <Text as="span" color="blue.400" fontWeight="medium">
               specialized in React
-            </span>
-          </p>
-        </div>
-      </motion.div>
-    </section>
+            </Text>
+          </Text>
+        </Flex>
+      </MotionBox>
+    </Box>
   );
 }
