@@ -1,7 +1,10 @@
 import React from "react";
+import { Box, Grid, Heading, Container } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
 import imgProjek1 from "../assets/img/myimage.webp";
-import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
 
 const projects = [
   {
@@ -32,8 +35,16 @@ const projects = [
 
 export default function Project() {
   return (
-    <section className="container mx-auto bg-[#14532D] text-white py-16 px-4" id="project">
-      <motion.div
+    <Box
+      as="section"
+      bg="#14532D"
+      className="container mx-auto"
+      color="white"
+      py={16}
+      px={4}
+      id="project"
+    >
+      <MotionBox
         initial={{ opacity: 0, y: 150, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         transition={{
@@ -43,10 +54,12 @@ export default function Project() {
         }}
         viewport={{ once: true }}
       >
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
+        <Container maxW="2xl" textAlign="center">
+          <Heading as="h2" fontSize="2xl" fontWeight="bold" mb={8}>
+            Featured Projects
+          </Heading>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={6}>
             {projects.map((project, index) => (
               <ProjectCard
                 key={index}
@@ -55,9 +68,9 @@ export default function Project() {
                 image={project.image}
               />
             ))}
-          </div>
-        </div>
-      </motion.div>
-    </section>
+          </Grid>
+        </Container>
+      </MotionBox>
+    </Box>
   );
 }
