@@ -15,9 +15,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Heading,
 } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import { motion } from "framer-motion";
 
 const INITIAL_FORM_STATE = {
   name: "",
@@ -67,10 +69,21 @@ export default function Contact() {
       });
   };
 
+  const MotionBox = motion(Box);
+
   return (
-    <div className="container mx-auto">
-      <Center h="100vh" bg="#512DA8">
-        <Box width="100%" maxWidth="500px">
+    <Center h="100vh" bg="#512DA8" className="container mx-auto" id="contact">
+      <Box width="100%" maxWidth="500px" py={12} px={4}>
+        <MotionBox
+          initial={{ opacity: 0, y: 150, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.2,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
+          viewport={{ once: true }}
+        >
           <Formik
             initialValues={INITIAL_FORM_STATE}
             validationSchema={validationSchema}
@@ -78,6 +91,16 @@ export default function Contact() {
           >
             {(props) => (
               <Form>
+                <Heading
+                  as="h2"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  mb={8}
+                  color="white"
+                  textAlign="center"
+                >
+                  Contact Me
+                </Heading>
                 <FormControl isInvalid={props.errors.name && props.touched.name}>
                   <FormLabel htmlFor="name" color="white">
                     Name
@@ -127,9 +150,8 @@ export default function Contact() {
               </Form>
             )}
           </Formik>
-        </Box>
-      </Center>
-
+        </MotionBox>
+      </Box>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -142,6 +164,6 @@ export default function Contact() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </div>
+    </Center>
   );
 }
